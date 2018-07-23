@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyr.wx.user.dao.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wyr.wx.user.domain.User">
+        <id column="userid" property="userid" />
+        <result column="openid" property="openid" />
+        <result column="name" property="name" />
+        <result column="nickname" property="nickname" />
+        <result column="city" property="city" />
+        <result column="province" property="province" />
+        <result column="country" property="country" />
+        <result column="headimgurl" property="headimgurl" />
+        <result column="tel" property="tel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        userid, openid, name, nickname, city, province, country, headimgurl, tel
+    </sql>
+	
+	<select id="getUserByOpenid" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List"/>
+		from wx_user
+		where
+		 openid=#{openid}
+	</select>
+</mapper>
